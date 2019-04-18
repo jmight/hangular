@@ -1,0 +1,20 @@
+{
+  "name": "hangular",
+  "version": "1.0.0",
+  "description": "Configures new Angular projects for deployment to Heroku",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmight/hangular.git"
+  },
+  "keywords": [
+    "angular",
+    "heroku"
+  ],
+  "author": "John Might <john@might.net>",
+  "license": "MIT",
+  "homepage": "https://github.com/jmight/hangular"
+}
