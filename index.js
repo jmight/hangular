@@ -6,9 +6,9 @@ const execSync = require('child_process').execSync
 const currentDir = process.cwd()
 const sourceDir = `${__dirname}/src`
 
-/*
-** UPDATE PACKAGE.JSON
-*/
+/**
+ * UPDATE PACKAGE.JSON
+ */
 
 // If package.json exists, import it
 const packageFile = `${currentDir}/package.json`
@@ -74,9 +74,9 @@ for (let dependency of devDependenciesToMove) {
 packageJson.dependencies = sortObjectKeys(packageJson.dependencies)
 
 
-/*
-** COPY SOURCE FILES AND WRITE PACKAGE.JSON
-*/
+/**
+ * COPY SOURCE FILES AND WRITE PACKAGE.JSON
+ */
 copyFromSrc('Procfile')
 copyFromSrc('server.js')
 
@@ -86,9 +86,9 @@ fs.writeFile(packageFile, JSON.stringify(packageJson, null, 2), (err) => {
 })
 
 
-/*
-** HELPER FUNCTIONS
-*/
+/**
+ * HELPER FUNCTIONS
+ */
 
 // Sort an object's keys alphabetically
 function sortObjectKeys(object) {
