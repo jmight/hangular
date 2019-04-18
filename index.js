@@ -1,12 +1,17 @@
+#!/usr/bin/env node
+
 const fs = require('fs')
 const execSync = require('child_process').execSync
+
+const currentDir = process.cwd()
+const sourceDir = `${__dirname}/src`
 
 /*
 ** UPDATE PACKAGE.JSON
 */
 
 // If package.json exists, import it
-const packageFile = './package.json'
+const packageFile = `${currentDir}/package.json`
 let packageJson
 
 try {
@@ -16,9 +21,8 @@ try {
     console.error(`${packageFile} not found, are you sure this is an Angular project?`)
     process.exit(1)
   }
-} catch (error) {
-  console.error(error)
-  process.exit(1)
+} catch (err) {
+  throw err
 }
 
 // Get current node version but strip the "v" prefix
@@ -38,6 +42,12 @@ packageJson.scripts["start"] = "node server.js"
 
 // Create Heroku postbuild script
 packageJson.scripts["heroku-postbuild"] = "ng build --prod"
+
+// Check if devDependencies key exists in package.json
+if (!("devDependencies" in packageJson)) {
+  console.error('devDependencies was not found in package.json, are you sure this is an Angular project?')
+  process.exit(1)
+}
 
 // List of devDependencies to move to dependencies
 const devDependenciesToMove = [
@@ -60,7 +70,27 @@ for (let dependency of devDependenciesToMove) {
   }
 }
 
-// Helper function to sort object keys alphabetically
+// Sort dependencies so they appear alphabetically in package.json
+packageJson.dependencies = sortObjectKeys(packageJson.dependencies)
+
+
+/*
+** COPY SOURCE FILES AND WRITE PACKAGE.JSON
+*/
+copyFromSrc('Procfile')
+copyFromSrc('server.js')
+
+fs.writeFile(packageFile, JSON.stringify(packageJson, null, 2), (err) => {
+  if (err) throw err
+  console.log(`${packageFile} updated!`)
+})
+
+
+/*
+** HELPER FUNCTIONS
+*/
+
+// Sort an object's keys alphabetically
 function sortObjectKeys(object) {
   let ordered = {}
   Object.keys(object).sort().forEach((key) => {
@@ -69,37 +99,14 @@ function sortObjectKeys(object) {
   return ordered
 }
 
-// Sort dependencies so they appear alphabetically in package.json
-packageJson.dependencies = sortObjectKeys(packageJson.dependencies)
-
-
-/*
-** PROCFILE CONFIG
-*/
-const procfileFile = "./Procfile"
-
-// Procfile contents
-const procCommand = "web: npm start"
-
-
-/*
-** CREATE SERVER.JS
-*/
-
-
-
-/*
-** WRITE ALL THE FILES
-*/
-
-// Write package.json
-fs.writeFile(packageFile, JSON.stringify(packageJson, null, 2), (error) => {
-  if (error) return console.log(error)
-  console.log(`${packageFile} updated!`)
-})
-
-// Create Procfile
-fs.writeFile(procfileFile, procCommand, (error) => {
-  if (error) return console.error(error)
-  console.log(`${procfileFile} created!`)
-})
+// Copies a file from source directory to current directory
+// TODO: Allow for specififying destination directory but default to current if not provided
+function copyFromSrc (fileName) {
+  const sourceFile = `${sourceDir}/${fileName}`
+  const destFile = `${__dirname}/${fileName}`
+  
+  fs.copyFile(sourceFile, destFile, (err) => {
+    if (err) throw err
+    console.log(`Copied ${sourceFile} to ${destFile}`)
+  })
+}
