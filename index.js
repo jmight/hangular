@@ -103,7 +103,7 @@ function sortObjectKeys(object) {
 // TODO: Allow for specififying destination directory but default to current if not provided
 function copyFromSrc (fileName) {
   const sourceFile = `${sourceDir}/${fileName}`
-  const destFile = `${__dirname}/${fileName}`
+  const destFile = `${currentDir}/${fileName}`
   
   fs.copyFile(sourceFile, destFile, (err) => {
     if (err) throw err
