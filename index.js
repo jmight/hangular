@@ -82,7 +82,7 @@ copyFromSrc('server.js')
 
 fs.writeFile(packageFile, JSON.stringify(packageJson, null, 2), (err) => {
   if (err) throw err
-  console.log(`${packageFile} updated!`)
+  console.log(`Updated package.json`)
 })
 
 
@@ -107,6 +107,6 @@ function copyFromSrc (fileName) {
   
   fs.copyFile(sourceFile, destFile, (err) => {
     if (err) throw err
-    console.log(`Copied ${sourceFile} to ${destFile}`)
+    console.log(`Created ${fileName}`)
   })
 }
