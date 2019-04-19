@@ -93,7 +93,6 @@ fs.writeFile(packageFile, JSON.stringify(packageJson, null, 2), (err) => {
     console.error('ERROR: Failed to install express, run "npm install express" manually')
     throw err
   }
-
 })
 
 
