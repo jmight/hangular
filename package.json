@@ -17,10 +17,7 @@
     "angular",
     "heroku"
   ],
-  "author": "John Might <john@might.net>",
+  "author": "John Might <john@might.net> (https://github.com/jmight)",
   "license": "MIT",
-  "homepage": "https://github.com/jmight/hangular",
-  "dependencies": {
-    "express": "^4.16.4"
-  }
+  "homepage": "https://github.com/jmight/hangular"
 }
