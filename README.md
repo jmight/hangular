@@ -27,6 +27,12 @@ cd my-cool-app
 hangular
 ```
 
+### Heroku
+- Commit the changes Hangular made to your project.
+- Push to a new GitHub repo.
+- Link the repo to your Heroku app.
+- Deploy.
+
 ### Usage on Existing Projects
 Hangular is designed to be used with newly-created Angular apps.  
 
