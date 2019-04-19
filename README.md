@@ -57,7 +57,7 @@ A new ```"heroku-postbuild"``` script is added.
 ```
 
 #### Add Engines
-We tell Heroku what version of node and npm to use by adding an ```"engines"``` field.  Hangular grabs the current versions of both from the current operating system.
+We tell Heroku what version of node and npm to use by adding an ```"engines"``` field.  Hangular grabs the version numbers from your current operating system.
 ```javascript
 "engines": {
   "node": "...",
