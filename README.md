@@ -45,7 +45,7 @@ The following devDependncies are all moved:
 "@angular/typescript": "..."
 ```
 
-#### Add Scripts
+#### Add/Update Scripts
 The start script is updated.
 ```javascript
 "start": "node server.js"
