@@ -4,7 +4,7 @@ Configure new Angular projects for Heroku deployments.
 
 ## Install
 ```
-npm install hangular
+npm install --save-dev hangular
 ```
 or
 ```
@@ -16,7 +16,7 @@ npm install -g hangular
 ```
 ng new my-cool-app
 cd my-cool-app
-npm install hangular
+npm install --save-dev hangular
 hangular
 ```
 
