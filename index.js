@@ -88,7 +88,9 @@ fs.writeFile(packageFile, JSON.stringify(packageJson, null, 2), (err) => {
   // Install Express
   // Must be installed in this callback to ensure express is listed as a dependency in package.json
   try {
+    console.log('Installing express...')
     execSync(`cd ${currentDir}; npm install express;`)
+    console.log('Installed express')
   } catch (err) {
     console.error('ERROR: Failed to install express, run "npm install express" manually')
     throw err
