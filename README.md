@@ -30,7 +30,7 @@ hangular
 ### Usage on Existing Projects
 Hangular is designed to be used with newly-created Angular apps.  
 
-While it may work on existing projects, we suggest using the section below to make the necessary modifications manually to prevent any complications.  Don't worry, though, it's pretty simple!
+While it may work on existing projects, we suggest using the section below to make the necessary modifications manually to prevent any complications.  Don't worry, though, it's really easy!
 
 ## What Does Hangular Modify?
 
