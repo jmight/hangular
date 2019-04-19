@@ -65,8 +65,12 @@ We tell Heroku what version of node and npm to use by adding an ```"engines"``` 
 }
 ```
 
-### Create server.js
-In order to serve the Angular application on Heroku, we need a lightweight, fast web-server.  Server.js sets up a minimal Express server sending all requests to index.html, the entry point of our Angular application.
+### Install Express and Create server.js
+In order to serve the Angular application on Heroku, we need a fast, lightweight web-server.  Server.js sets up a minimal Express server sending all requests to index.html, the entry point of our Angular application.
+```
+npm install express
+```
+and
 ```javascript
 const express = require('express');
 const path = require('path');
