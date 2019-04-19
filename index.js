@@ -9,11 +9,10 @@ const sourceDir = `${__dirname}/src`
 /**
  * UPDATE PACKAGE.JSON
  */
-
-// If package.json exists, import it
 const packageFile = `${currentDir}/package.json`
 let packageJson
 
+// If package.json exists, import it
 try {
   if (fs.existsSync(packageFile)) {
     packageJson = require(packageFile)
@@ -75,21 +74,32 @@ packageJson.dependencies = sortObjectKeys(packageJson.dependencies)
 
 
 /**
- * COPY SOURCE FILES AND WRITE PACKAGE.JSON
+ * COPY, WRITE, AND INSTALL
  */
+ // Copy source files
 copyFromSrc('Procfile')
 copyFromSrc('server.js')
 
+// Write package.json
 fs.writeFile(packageFile, JSON.stringify(packageJson, null, 2), (err) => {
   if (err) throw err
   console.log(`Updated package.json`)
+
+  // Install Express
+  // Must be installed in this callback to ensure express is listed as a dependency in package.json
+  try {
+    execSync(`cd ${currentDir}; npm install express;`)
+  } catch (err) {
+    console.error('ERROR: Failed to install express, run "npm install express" manually')
+    throw err
+  }
+
 })
 
 
 /**
  * HELPER FUNCTIONS
  */
-
 // Sort an object's keys alphabetically
 function sortObjectKeys(object) {
   let ordered = {}

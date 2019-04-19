@@ -4,7 +4,6 @@ const path = require('path');
 const app = express();
 
 const appName = require('./package.json').name
-// const appName = 'angular-heroku';
 
 app.use(express.static(__dirname + '/dist/' + appName));
 
